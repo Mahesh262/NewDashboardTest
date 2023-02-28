@@ -1,0 +1,36 @@
+import React, { useState } from "react";
+
+function App() {
+  const [data, setData] = useState([
+    { id: 1, name: "red" },
+    { id: 2, name: "blue" },
+    { id: 3, name: "green" },
+    { id: 4, name: "yellow" },
+  ]);
+  const [randomNumber, setRandomNumber] = useState(null);
+
+  function handleClick() {
+    const randomIndex = Math.floor(Math.random() * data.length);
+    const randomObject = data[randomIndex];
+    const randomId = randomObject.name;
+    setRandomNumber(randomId);
+  }
+
+  return (
+    <div>
+      <ul>
+        {data.map((item) => (
+          <li key={item.id}>{item.name}</li>
+        ))}
+      </ul>
+      <button onClick={handleClick}>Generate Random Number</button>
+      {randomNumber && (
+        <div style={{ backgroundColor: randomNumber, height: "300px" }}>
+          Random Colour
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default App;
